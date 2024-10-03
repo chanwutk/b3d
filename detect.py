@@ -129,8 +129,8 @@ def main(args: argparse.Namespace):
     with open('./configs/config_refined.json') as fp:
         config = json.load(fp)
 
+    num_processes = 6
     # num_processes = torch.cuda.device_count()
-    num_processes = 7
     # num_processes = 20
 
     cap = cv2.VideoCapture(input_file)
@@ -143,7 +143,7 @@ def main(args: argparse.Namespace):
         out_queue = mp.Queue()
         pDetectors = []
         for i in range(num_processes):
-            pDetector = mp.Process(target=detector, args=(in_queue, out_queue, (i + 1,)))
+            pDetector = mp.Process(target=detector, args=(in_queue, out_queue, (i,)))
             pDetector.start()
             pDetectors.append(pDetector)
         
@@ -153,7 +153,7 @@ def main(args: argparse.Namespace):
         bboxes = {}
         none_count = 0
 
-        writer = open(output_file or f'detections_{input_file}.jsonl', 'w')
+        writer = open(output_file or f'{input_file}.detections.jsonl', 'w')
         start_time = time.time()
         completed_detection_count = 0
         pbar = tqdm(total=frame_count)
