@@ -1,6 +1,8 @@
 import cv2
 import json
 
+from external.utils import jsonl_reader
+
 def get_reader(filename):
     annotations_reader = open(filename, 'r')
     cache = {}
@@ -24,12 +26,12 @@ def get_reader(filename):
     annotations_reader.close()
 
 
-cap = cv2.VideoCapture('./hwy00.mp4')
+cap = cv2.VideoCapture('./hwy00.truncated.mp4')
 frame_index = 0
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 predictor_count = 0
 mask_array = None
-reader = get_reader('./detections.json')
+reader = jsonl_reader('./hwy00.mp4.truncated.sorted.tracks.jsonl')
 
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
@@ -49,8 +51,8 @@ while cap.isOpened():
     out.write(frame)
 
     frame_index += 1
-    # if frame_index > 30:
-    #     break
+    if frame_index > 100:
+        break
 print('done')
 
 out.release()

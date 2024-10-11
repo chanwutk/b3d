@@ -30,42 +30,42 @@ def get_reader(filename):
         yield annotations
     annotations_reader.close()
 
-
-reader = get_reader('./tracks.jsonl')
-trajectories = {}
-
-
-def flush(trajectories, curr_idx, fp):
-    removed_tids = []
-    for tid, track in trajectories.items():
-        if curr_idx is not None and track[-1][0] + 60 > curr_idx:
-            continue
-        interpolated_track = interpolate(track)
-        if len(interpolated_track) < 5:
-            print('Interpolating1', tid, len(track), len(interpolated_track), 'frames')
-        json.dump([tid, interpolated_track], fp)
-        fp.write('\n')
-        removed_tids.append(tid)
-
-    print('Removed', len(removed_tids), 'trajectories')
-    for tid in removed_tids:
-        del trajectories[tid]
+for rr in [2, 4, 8, 16]:
+    reader = get_reader(f'jnc00.mp4.sorted.rr{rr}.tracks.jsonl')
+    trajectories = {}
 
 
-fp = open('not_interpolated_tracks.jsonl', 'w')
+    def flush(trajectories, curr_idx, fp):
+        removed_tids = []
+        for tid, track in trajectories.items():
+            if curr_idx is not None and track[-1][0] + 60 > curr_idx:
+                continue
+            interpolated_track = interpolate(track)
+            if len(interpolated_track) < 5:
+                print('Interpolating1', tid, len(track), len(interpolated_track), 'frames')
+            json.dump([tid, interpolated_track], fp)
+            fp.write('\n')
+            removed_tids.append(tid)
 
-index = 0
-for fid, ann in reader:
-    print(fid)
-    for tid, *bbox in ann:
-        if tid not in trajectories:
-            trajectories[tid] = []
-        trajectories[tid].append((fid, bbox))
-    
-    if index % 100 == 0:
-        flush(trajectories, fid, fp)
-    index += 1
-    
-flush(trajectories, None, fp)
-assert len(trajectories) == 0
-fp.close()
+        print('Removed', len(removed_tids), 'trajectories')
+        for tid in removed_tids:
+            del trajectories[tid]
+    fp = open(f'jnc00.mp4.sorted.rr{rr}.interpolated.tracks.jsonl', 'w')
+
+    index = 0
+    for fid, ann in reader:
+        print(fid)
+        for tid, *bbox in ann:
+            if tid not in trajectories:
+                trajectories[tid] = []
+            trajectories[tid].append((fid, bbox))
+        
+        if index % 100 == 0:
+            flush(trajectories, fid, fp)
+        if index > 5000:
+            break
+        index += 1
+        
+    flush(trajectories, None, fp)
+    assert len(trajectories) == 0
+    fp.close()

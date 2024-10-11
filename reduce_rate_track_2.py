@@ -24,13 +24,14 @@ def get_reader(filename):
     annotations_reader.close()
 
 
-reader = get_reader('./tracks.jsonl')
+for rr in [2, 4, 8, 16]:
+    reader = get_reader('/data/chanwutk/projects/b3d-opt/jnc00.mp4.sorted.tracks.jsonl')
 
-fp = open('./reduced_tracks_2.jsonl', 'w')
+    fp = open(f'/data/chanwutk/projects/b3d-opt/jnc00.mp4.sorted.rr{rr}.tracks.jsonl', 'w')
 
-for (idx, ann), ann_txt in reader:
-    if idx % 10 == 0:
-        fp.write(ann_txt)
-    else:
-        fp.write(json.dumps([idx, [a for a in ann if a[1] < 384 or 3456 < a[1]]]) + '\n')
-fp.close()
+    for (idx, ann), ann_txt in reader:
+        if idx % rr == 0:
+            fp.write(ann_txt)
+        else:
+            fp.write(json.dumps([idx, [a for a in ann if a[1] < 384 or 3456 < a[1] or (1536 < a[1] and a[1] < 3072)]]) + '\n')
+    fp.close()

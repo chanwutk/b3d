@@ -24,10 +24,10 @@ def get_reader(filename):
     annotations_reader.close()
 
 
-reader = get_reader('./detections.jsonl')
+reader = get_reader('/data/chanwutk/projects/b3d-opt/hwy00.mp4.detections.jsonl')
 
 frame_index = 0
-fp = open('sorted_detections.jsonl', 'w')
+fp = open('/data/chanwutk/projects/b3d-opt/hwy00.mp4.sorted.detections.jsonl', 'w')
 
 for (fid, ann), ann_txt in reader:
     print(fid)
@@ -36,3 +36,5 @@ for (fid, ann), ann_txt in reader:
     frame_index += 1
 
 fp.close()
+
+print('done')

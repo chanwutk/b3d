@@ -24,17 +24,19 @@ def get_reader(filename):
     annotations_reader.close()
 
 
-cap = cv2.VideoCapture('./hwy00.mp4')
+cap = cv2.VideoCapture('./hwy00.truncated.mp4')
 frame_index = 0
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 predictor_count = 0
 mask_array = None
-reader = get_reader('./tracks.jsonl')
+reader = get_reader('./hwy00.mp4.truncated.sorted.tracks.jsonl')
 
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
-fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
-out = cv2.VideoWriter('output.avi', fourcc, 30, (frame_width, frame_height))
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+
+output_file = 'hwy00.truncated.ann.tracks.mp4'
+out = cv2.VideoWriter(output_file, fourcc, 30, (frame_width, frame_height))
 
 
 colors = ["e41a1c","377eb8","4daf4a","984ea3","ff7f00","ffff33","a65628","f781bf","999999"]

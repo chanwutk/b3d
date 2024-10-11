@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <job>
+      <id>1282987</id>
+      <size>1</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <created>2024-10-03 07:42:09.240797+00:00</created>
+      <updated>2024-10-03 07:49:11.345085+00:00</updated>
+      <subset>default</subset>
+      <start_frame>0</start_frame>
+      <stop_frame>0</stop_frame>
+      <frame_filter></frame_filter>
+      <segments>
+        <segment>
+          <id>1285368</id>
+          <start>0</start>
+          <stop>0</stop>
+          <url>https://app.cvat.ai/api/jobs/1282987</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>chanwutk</username>
+        <email>chanwutk@gmail.com</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>domain</name>
+          <color>#e44bf0</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+    </job>
+    <dumped>2024-10-03 07:50:13.728412+00:00</dumped>
+  </meta>
+  <image id="0" name="jnc00.mp4.jpg" width="3840" height="2160">
+    <polygon label="domain" source="manual" occluded="0" points="0.00,743.10;1038.85,803.71;1632.82,784.16;2344.11,686.39;3001.63,520.17;3666.48,285.52;3840.00,203.80;3840.00,542.20;3092.07,820.82;2744.98,916.15;2632.54,1033.48;2588.54,1241.24;2666.76,1380.57;3072.51,1585.89;3840.00,1942.30;3840.00,2160.00;3482.00,2160.00;2546.99,1764.32;1869.92,1473.45;1510.60,1343.90;997.30,1236.35;481.55,1185.02;0.00,1136.60" z_order="0">
+    </polygon>
+  </image>
+</annotations>

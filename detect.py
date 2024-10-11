@@ -3,6 +3,9 @@ import json
 import time
 import multiprocessing as mp
 from xml.etree import ElementTree
+import time
+import logging
+import os
 
 import cv2
 import numpy as np
@@ -16,8 +19,24 @@ from external.nms import nms
 from utils import parse_outputs, regionize_image
 
 
+LOG_DIR = './logs'
+RESULTS_DIR = './results'
+
+
 def detector(in_queue, out_queue, args):
     gpu_id, = args
+
+    # create logger with 'reader'
+    logger = logging.getLogger(f'detector_{gpu_id}')
+    logger.setLevel(logging.INFO)
+
+    # create file handler which logs even debug messages
+    fh = logging.FileHandler(os.path.join(LOG_DIR, f'detector_{gpu_id}.log'))
+    fh.setLevel(logging.INFO)
+    logger.addHandler(fh)
+
+    start = time.time()
+
     with open('./configs/config_refined.json') as fp:
         config = json.load(fp)
     cfg = get_cfg()
@@ -39,12 +58,16 @@ def detector(in_queue, out_queue, args):
     # cfg.MODEL.DEVICE = f'cuda:0'
     predictor = DefaultPredictor(cfg)
 
+    logger.info(json.dumps({'init_time': time.time() - start}))
+
     while True:
+        start = time.time()
         frame_offset_idx = in_queue.get()
         if frame_offset_idx is None:
             break
 
         frame, _offset, idx, len_image, masktl = frame_offset_idx
+        logger.info(json.dumps({'get_time': time.time() - start, }))
         _outputs = predictor(frame)
         _offset = (_offset[0] + masktl[1], _offset[1] + masktl[0])
         _bboxes, _scores, _ = parse_outputs(_outputs, _offset)
@@ -74,6 +97,15 @@ def get_mask(w, h, mask):
 
 
 def reader(filename, in_queue):
+    # create logger with 'reader'
+    logger = logging.getLogger('reader')
+    logger.setLevel(logging.INFO)
+
+    # create file handler which logs even debug messages
+    fh = logging.FileHandler(os.path.join(LOG_DIR, 'reader.log'))
+    fh.setLevel(logging.INFO)
+    logger.addHandler(fh)
+
     tree = ElementTree.parse(filename + '.mask.xml')
     mask = tree.getroot()
 
@@ -85,6 +117,7 @@ def reader(filename, in_queue):
         # if frame_index >= 100:
         #     break
         # print(f'{frame_index}/{frame_count}')
+        start = time.time()
         success, frame = cap.read()
         if not success:
             break
@@ -98,10 +131,15 @@ def reader(filename, in_queue):
         frame_masked = apply_mask(frame)
 
         image_regions = regionize_image(frame_masked)
-        for _image, _offset in image_regions:
+        logger.info(json.dumps({'frame_index': frame_index, 'time': time.time() - start, 'num_regions': len(image_regions)}))
+        for image_idx, (_image, _offset) in enumerate(image_regions):
             in_queue.put((_image, _offset, frame_index, len(image_regions), masktl), block=True, timeout=None)
         frame_index += 1
     
+    in_queue.put(None)
+    in_queue.put(None)
+    in_queue.put(None)
+    in_queue.put(None)
     in_queue.put(None)
     in_queue.put(None)
     in_queue.put(None)
