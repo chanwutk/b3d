@@ -208,18 +208,18 @@ def main(args: argparse.Namespace):
             bboxes[idx].append((_bboxes, _scores))
             if len(bboxes[idx]) == len_image:
                 pbar.update(1)
-                b, s = [], []
-                for _bboxes, _scores in bboxes[idx]:
-                    b += _bboxes
-                    s += _scores
+                # b, s = [], []
+                # for _bboxes, _scores in bboxes[idx]:
+                #     b += _bboxes
+                #     s += _scores
 
-                nms_threshold = config['nms_threshold']
-                nms_bboxes, nms_scores = nms(b, s, nms_threshold)
-                detections = np.zeros((len(nms_bboxes), 5))
-                detections[:, 0:4] = nms_bboxes
-                detections[:, 4] = nms_scores
+                # nms_threshold = config['nms_threshold']
+                # nms_bboxes, nms_scores = nms(b, s, nms_threshold)
+                # detections = np.zeros((len(nms_bboxes), 5))
+                # detections[:, 0:4] = nms_bboxes
+                # detections[:, 4] = nms_scores
 
-                writer.write("[" + str(idx) + ", " + json.dumps(detections.tolist()) + "]\n")
+                # writer.write("[" + str(idx) + ", " + json.dumps(detections.tolist()) + "]\n")
                 # print(f'detection speed:', int(completed_detection_count * 100 / (time.time() - start_time)) / 100., 'fps')
                 completed_detection_count += 1
         
