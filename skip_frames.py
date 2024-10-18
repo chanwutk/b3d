@@ -8,7 +8,7 @@ def main(args: argparse.Namespace):
     input_files: list[str] = [f for f in os.listdir(input_dir) if f.endswith('.jsonl')]
 
     keep: list[int] = [int(k) for k in args.keep.split(',')]
-    skip = args.skip
+    skip: list[int] = [int(s) for s in args.skip.split(',')]
 
     output_dir: str = args.output or input_dir + '.skip.' + str(skip)
 
@@ -27,6 +27,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('input', type=str, help='Input detection directory')
     parser.add_argument('-k', '--keep', type=str, help='Comma separated regions to keep', default='', required=True)
-    parser.add_argument('-s', '--skip', type=int, help='frames to skip', default=30, required=True)
+    parser.add_argument('-s', '--skip', type=str, help='frames to skip', default='2', required=True)
     parser.add_argument('-o', '--output', type=str, help='Output detections file', default=None, required=False)
     main(parser.parse_args())
