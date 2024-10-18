@@ -21,6 +21,7 @@ from utils import parse_outputs, regionize_image
 
 LOG_DIR = './logs'
 RESULTS_DIR = './results'
+LIMIT = 3000
 
 
 def detector(in_queue, out_queue, args):
@@ -67,12 +68,15 @@ def detector(in_queue, out_queue, args):
             break
 
         frame, _offset, idx, len_image, masktl, region_idx = frame_offset_idx
-        logger.info(json.dumps({'action': 'get_image', 'runtime': time.time() - start, 'offset': _offset, 'masktl': masktl, 'region_idx': region_idx, 'regiou_len': len_image}))
+        logger.info(json.dumps({'action': 'get_image', 'runtime': time.time() - start, 'offset': _offset, 'masktl': masktl, 'region_idx': region_idx, 'regiou_len': len_image, 'frame_idx': idx}))
         start = time.time()
         _outputs = predictor(frame)
         _offset = (_offset[0] + masktl[1], _offset[1] + masktl[0])
         _bboxes, _scores, _ = parse_outputs(_outputs, _offset)
-        logger.info(json.dumps({'action': 'prediction', 'runtime': time.time() - start, 'offset': _offset, 'masktl': masktl, 'region_idx': region_idx, 'regiou_len': len_image}))
+        logger.info(json.dumps({
+            'action': 'prediction', 'runtime': time.time() - start, 'offset': _offset, 'masktl': masktl, 'region_idx': region_idx, 'regiou_len': len_image, 'frame_idx': idx,
+            'bboxes': [b.tolist() for b in _bboxes], 'scores': [s.tolist() for s in _scores]
+        }))
 
         out_queue.put((_bboxes, _scores, idx, len_image))
     
@@ -116,8 +120,8 @@ def reader(filename, in_queue):
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     mask_array = None
     while cap.isOpened():
-        # if frame_index >= 100:
-        #     break
+        if frame_index >= LIMIT:
+            break
         # print(f'{frame_index}/{frame_count}')
         start = time.time()
         success, frame = cap.read()
