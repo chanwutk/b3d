@@ -31,7 +31,7 @@ def main(args: argparse.Namespace):
     skip = args.skip
     parent_dir = "/".join(input_dir.split('/')[:-1])
     # create file handler which logs even debug messages
-    fh = logging.FileHandler(os.path.join(parent_dir, 'nms.skip.' + skip))
+    fh = logging.FileHandler(os.path.join(parent_dir, 'nms.skip.' + str(skip)))
     fh.setLevel(logging.INFO)
     logger.addHandler(fh)
 
