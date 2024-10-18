@@ -21,7 +21,7 @@ from utils import parse_outputs, regionize_image
 
 LOG_DIR = './logs'
 RESULTS_DIR = './results'
-LIMIT = 3000
+LIMIT = 1000
 
 
 def detector(in_queue, out_queue, args):

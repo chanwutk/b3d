@@ -22,7 +22,7 @@ def main(args: argparse.Namespace):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('input', type=str, help='Input video file', default='./hwy00.mp4')
-    parser.add_argument('-k', '--keep', type=str, help='Comma separated regions to keep', default='', require=True)
+    parser.add_argument('-k', '--keep', type=str, help='Comma separated regions to keep', default='', required=True)
     parser.add_argument('-s', '--skip', type=int, help='frames to skip', default=30, required=True)
     parser.add_argument('-o', '--output', type=str, help='Output detections file', default=None, required=False)
     main(parser.parse_args())
