@@ -6,6 +6,7 @@ from xml.etree import ElementTree
 import time
 import logging
 import os
+import shutil
 
 import cv2
 import numpy as np
@@ -112,6 +113,7 @@ def reader(filename, in_queue):
     logger.setLevel(logging.INFO)
 
     # create file handler which logs even debug messages
+    shutil.rmtree(os.path.join(base_dir(filename), 'read.log.jsonl'), ignore_errors=True)
     fh = logging.FileHandler(os.path.join(base_dir(filename), 'read.log.jsonl'))
     fh.setLevel(logging.INFO)
     logger.addHandler(fh)
@@ -184,6 +186,10 @@ def main(args: argparse.Namespace):
     cap = cv2.VideoCapture(input_file)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
+    os.makedirs(base_dir(input_file), exist_ok=True)
+
+    shutil.rmtree(os.path.join(base_dir(input_file), 'detection'), ignore_errors=True)
+    os.makedirs(os.path.join(base_dir(input_file), 'detection'), exist_ok=True)
     try:
         in_queue = mp.Queue(20)
         out_queue = mp.Queue()
