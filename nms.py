@@ -13,7 +13,9 @@ from external.nms import nms
 def read(filename: str, in_queue: mp.Queue):
     with open(filename, 'r') as fi:
         for line in fi:
-            in_queue.put(json.loads(line))
+            res = json.loads(line)
+            if res['action'] == 'prediction':
+                in_queue.put(res)
     
     in_queue.put(None)
 
