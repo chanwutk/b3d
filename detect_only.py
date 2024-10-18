@@ -24,7 +24,11 @@ RESULTS_DIR = './results'
 LIMIT = 1000
 
 
-def detector(in_queue, out_queue, args):
+def base_dir(video_file: str):
+    return video_file + ".results"
+
+
+def detector(input_file, in_queue, out_queue, args):
     gpu_id, = args
 
     # create logger with 'reader'
@@ -32,7 +36,7 @@ def detector(in_queue, out_queue, args):
     logger.setLevel(logging.INFO)
 
     # create file handler which logs even debug messages
-    fh = logging.FileHandler(os.path.join(LOG_DIR, f'detector_{gpu_id}.log'))
+    fh = logging.FileHandler(os.path.join(base_dir(input_file), 'detection', f'detection.{gpu_id}.log.jsonl'))
     fh.setLevel(logging.INFO)
     logger.addHandler(fh)
 
@@ -108,7 +112,7 @@ def reader(filename, in_queue):
     logger.setLevel(logging.INFO)
 
     # create file handler which logs even debug messages
-    fh = logging.FileHandler(os.path.join(LOG_DIR, 'reader.log'))
+    fh = logging.FileHandler(os.path.join(base_dir(filename), 'read.log.jsonl'))
     fh.setLevel(logging.INFO)
     logger.addHandler(fh)
 
@@ -186,7 +190,7 @@ def main(args: argparse.Namespace):
 
         pDetectors = []
         for i in range(num_processes):
-            pDetector = mp.Process(target=detector, args=(in_queue, out_queue, (i,)))
+            pDetector = mp.Process(target=detector, args=(input_file, in_queue, out_queue, (i,)))
             pDetector.start()
             pDetectors.append(pDetector)
         
@@ -199,7 +203,7 @@ def main(args: argparse.Namespace):
         writer = open(output_file or f'{input_file}.detections.jsonl', 'w')
         start_time = time.time()
         completed_detection_count = 0
-        pbar = tqdm(total=frame_count)
+        pbar = tqdm(total=min(frame_count, LIMIT))
         while none_count < num_processes:
             bboxes_scores_idx = out_queue.get()
             if bboxes_scores_idx is None:
