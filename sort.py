@@ -39,7 +39,7 @@ def main(args: argparse.Namespace):
                 'frame_idx': frame_index,
                 'tracks': rendering,
                 'runtime': time.time() - start
-            }))
+            }) + '\n')
             frame_index = frame_index + 1
 
         fp.close()
