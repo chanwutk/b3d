@@ -8,19 +8,20 @@ def main(args: argparse.Namespace):
     input_files: list[str] = [f for f in os.listdir(input_dir) if f.endswith('.jsonl')]
 
     keep: list[int] = [int(k) for k in args.keep.split(',')]
-    skip: list[int] = [int(s) for s in args.skip.split(',')]
+    skips: list[int] = [int(s) for s in args.skip.split(',')]
 
-    output_dir: str = args.output or input_dir + '.skip.' + str(skip)
+    for skip in skips:
+        output_dir: str = args.output or input_dir + '.skip.' + str(skip)
 
-    for input_file in input_files:
-        with open(os.path.join(output_dir, input_file), 'w') as fo:
-            with open(os.path.join(input_dir, input_file), 'r') as fi:
-                for line in fi:
-                    record = json.loads(line)
-                    if record['action'] == 'init':
-                        fo.write(line)
-                    elif record["region_idx"] in keep or record['frame_idx'] % skip == 0:
-                        fo.write(line)
+        for input_file in input_files:
+            with open(os.path.join(output_dir, input_file), 'w') as fo:
+                with open(os.path.join(input_dir, input_file), 'r') as fi:
+                    for line in fi:
+                        record = json.loads(line)
+                        if record['action'] == 'init':
+                            fo.write(line)
+                        elif record["region_idx"] in keep or record['frame_idx'] % skip == 0:
+                            fo.write(line)
 
 
 if __name__ == "__main__":
