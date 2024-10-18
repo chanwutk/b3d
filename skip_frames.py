@@ -1,5 +1,6 @@
 import argparse
 import json
+import shutil
 import os
 
 
@@ -12,6 +13,9 @@ def main(args: argparse.Namespace):
 
     for skip in skips:
         output_dir: str = args.output or input_dir + '.skip.' + str(skip)
+
+        shutil.rmtree(output_dir, ignore_errors=True)
+        os.makedirs(output_dir, exist_ok=True)
 
         for input_file in input_files:
             with open(os.path.join(output_dir, input_file), 'w') as fo:
