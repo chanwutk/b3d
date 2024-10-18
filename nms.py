@@ -7,6 +7,7 @@ import time
 import logging
 
 import numpy as np
+from tqdm import tqdm
 
 from external.nms import nms
 
@@ -64,6 +65,7 @@ def main(args: argparse.Namespace):
     done_count = 0
     next_idx = 0
     idx_to_detections = {}
+    pbar = tqdm()
     while True:
         res = in_queue.get()
         if res is None:
@@ -84,12 +86,14 @@ def main(args: argparse.Namespace):
                     process_next(next_idx)
 
                     del idx_to_detections[next_idx]
+                    pbar.update(1)
                     next_idx += 1
             else:
                 if len(idx_to_detections[next_idx]) == 2:
                     process_next(next_idx)
 
                     del idx_to_detections[next_idx]
+                    pbar.update(1)
                     next_idx += 1
         
     for p in processes:
