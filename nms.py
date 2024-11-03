@@ -68,6 +68,7 @@ def main(args: argparse.Namespace):
     pbar = tqdm()
     while True:
         res = in_queue.get()
+        # print(res)
         if res is None:
             done_count += 1
             if done_count == len(input_files):
@@ -82,7 +83,7 @@ def main(args: argparse.Namespace):
 
         if next_idx in idx_to_detections:
             if next_idx % skip == 0:
-                if len(idx_to_detections[next_idx]) == 7:
+                if len(idx_to_detections[next_idx]) == 1:
                     process_next(next_idx)
 
                     del idx_to_detections[next_idx]

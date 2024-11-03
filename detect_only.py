@@ -22,7 +22,7 @@ from utils import parse_outputs, regionize_image
 
 LOG_DIR = './logs'
 RESULTS_DIR = './results'
-LIMIT = 1000
+LIMIT = 5000
 
 
 def base_dir(video_file: str):

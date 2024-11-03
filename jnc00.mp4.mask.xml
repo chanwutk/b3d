@@ -9,7 +9,7 @@
       <overlap>0</overlap>
       <bugtracker></bugtracker>
       <created>2024-10-29 10:36:29.639723+00:00</created>
-      <updated>2024-10-29 11:05:29.847566+00:00</updated>
+      <updated>2024-10-29 22:15:29.264195+00:00</updated>
       <subset>default</subset>
       <start_frame>0</start_frame>
       <stop_frame>0</stop_frame>
@@ -42,20 +42,134 @@
           <attributes>
           </attributes>
         </label>
+        <label>
+          <name>road0</name>
+          <color>#207d01</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>road1</name>
+          <color>#848661</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>road2</name>
+          <color>#ae1272</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>road3</name>
+          <color>#da0159</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>road4</name>
+          <color>#db9f82</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>road5</name>
+          <color>#ead576</color>
+          <type>polygon</type>
+          <attributes>
+          </attributes>
+        </label>
       </labels>
     </job>
-    <dumped>2024-10-29 19:03:58.397295+00:00</dumped>
+    <dumped>2024-10-29 22:15:55.328304+00:00</dumped>
   </meta>
   <image id="0" name="jnc00.mp4.jpg" width="3840" height="2160">
+    <polygon label="road1" source="manual" occluded="0" points="1011.58,982.68;808.81,971.75;795.45,1208.51;1011.58,1231.58" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="3438.32,355.24;3238.68,424.78;3288.03,573.95;3497.76,492.07" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="3623.37,276.73;3436.07,355.24;3496.64,493.19;3687.30,407.95" z_order="0">
+    </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="3839.84,183.64;3623.37,276.73;3687.30,407.95;3840.00,333.28;3840.00,205.45" z_order="0">
+    </polygon>
+    <polygon label="road1" source="manual" occluded="0" points="434.85,736.20;211.44,719.20;216.30,930.47;434.85,943.83" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="3840.00,2142.58;3558.62,2007.52;3463.92,2160.00;3840.00,2160.00" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="436.06,946.25;217.51,931.68;211.44,1162.38;429.99,1179.37" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="3840.00,334.46;3687.80,407.89;3744.32,554.59;3840.00,504.78" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="3496.68,492.68;3289.42,573.43;3347.29,726.86;3559.94,646.11" z_order="0">
+    </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="2605.74,1574.68;2334.41,1445.48;2243.96,1647.36;2523.37,1768.49" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="613.33,748.34;434.85,734.99;434.85,947.47;614.54,957.18" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="211.44,719.20;1.39,705.85;1.39,917.11;213.87,929.26" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="614.54,959.61;436.06,946.25;429.99,1181.80;606.04,1192.73" z_order="0">
+    </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="1219.20,789.63;1024.93,776.27;1020.08,982.68;1203.42,994.82" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="2608.97,1573.07;2332.79,1440.63;2418.39,1241.98;2704.25,1364.73" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="814.88,761.70;614.54,747.13;614.54,959.61;808.81,969.32" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="1204.63,994.82;1012.79,982.68;1012.79,1227.94;1185.20,1243.73" z_order="0">
+    </polygon>
     <polygon label="road" source="manual" occluded="0" points="0.00,1144.80;1185.74,1242.38;1203.69,993.39;0.00,916.00" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="808.81,970.54;615.76,958.40;607.26,1195.16;794.24,1209.73" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="3317.98,1900.93;3082.18,1791.10;3009.50,1978.45;3254.99,2073.74" z_order="0">
+    </polygon>
+    <polygon label="road1" source="manual" occluded="0" points="3687.80,407.89;3496.68,492.68;3557.25,646.11;3745.67,550.55" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="3238.68,428.14;3034.55,495.44;3086.14,647.97;3290.27,570.58" z_order="0">
+    </polygon>
+    <polygon label="road1" source="manual" occluded="0" points="3555.39,2005.90;3321.21,1899.31;3250.14,2075.35;3457.06,2160.00;3464.84,2160.00" z_order="0">
     </polygon>
     <polygon label="road" source="manual" occluded="0" points="2330.40,1442.80;2245.17,1648.25;3470.10,2160.00;3840.00,2160.00;3840.00,2140.50" z_order="0">
     </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="2854.70,717.44;2589.56,792.81;2631.28,1013.53;2897.76,897.79" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="3288.07,572.08;3086.19,642.07;3135.99,799.54;3345.94,728.21" z_order="0">
+    </polygon>
+    <polygon label="road2" source="manual" occluded="0" points="3083.79,1791.10;2857.68,1686.12;2957.82,1468.09;3177.47,1577.91" z_order="0">
+    </polygon>
     <polygon label="road" source="manual" occluded="0" points="2591.07,790.39;2556.30,630.01;2786.22,579.54;3395.23,374.29;3840.00,183.70;3840.00,333.60;3543.30,474.10;3167.60,616.50;2805.30,733.20" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="3086.19,643.42;2856.04,718.79;2889.69,870.87;3134.64,798.19" z_order="0">
+    </polygon>
+    <polygon label="road1" source="manual" occluded="0" points="2859.30,1681.28;2610.58,1574.68;2702.64,1363.11;2956.20,1466.48" z_order="0">
+    </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="216.29,930.47;0.17,914.69;1.39,1144.16;212.65,1162.38" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="3082.18,1789.49;2857.68,1682.89;2773.70,1886.39;3011.11,1978.45" z_order="0">
     </polygon>
     <polygon label="road" source="manual" occluded="0" points="0.00,704.47;1219.50,789.90;1202.00,993.50;0.00,916.00;0.00,706.24" z_order="0">
     </polygon>
+    <polygon label="road1" source="manual" occluded="0" points="3034.55,496.56;2809.12,570.58;2856.22,723.11;3085.02,644.61" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="3557.00,2007.52;3319.59,1899.31;3413.26,1684.51;3640.99,1795.95" z_order="0">
+    </polygon>
+    <polygon label="road0" source="manual" occluded="0" points="2811.36,570.58;2853.98,718.63;2592.65,792.65;2556.76,628.90" z_order="0">
+    </polygon>
+    <polygon label="road5" source="manual" occluded="0" points="3840.00,2137.89;3557.00,2007.52;3642.60,1795.95;3840.00,1889.12" z_order="0">
+    </polygon>
+    <polygon label="road3" source="manual" occluded="0" points="3321.21,1900.93;3085.41,1787.87;3180.70,1576.30;3414.88,1687.74" z_order="0">
+    </polygon>
     <polygon label="domain" source="manual" occluded="0" points="0.00,704.40;881.50,780.10;1361.51,793.06;2083.02,738.72;2789.43,578.72;3387.17,379.47;3840.00,183.80;3840.00,507.20;3417.36,708.53;2979.62,841.36;2747.17,907.77;2632.45,1010.41;2612.70,1252.40;2740.10,1378.60;2934.30,1455.80;3492.83,1725.89;3840.00,1890.30;3840.00,2160.00;3547.43,2160.00;3469.80,2160.00;2258.11,1650.41;1886.79,1484.38;1630.19,1376.00;1340.38,1288.45;890.57,1209.66;235.47,1155.62;0.00,1143.90" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="1026.15,777.48;816.10,760.49;808.81,970.54;1020.08,982.68" z_order="0">
+    </polygon>
+    <polygon label="road4" source="manual" occluded="0" points="2856.07,1686.12;2607.35,1573.07;2523.37,1771.72;2775.32,1879.93" z_order="0">
     </polygon>
     <polygon label="road" source="manual" occluded="0" points="2418.73,1241.08;2332.59,1441.62;3840.00,2140.60;3840.00,1891.70;2939.58,1461.81" z_order="0">
     </polygon>
