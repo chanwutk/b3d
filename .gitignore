@@ -135,3 +135,13 @@ videos/
 vision.zip
 vision/
 output/
+
+
+*.mp4.results/*
+logs/*
+output-eval/*
+
+*.mp4
+*.jpg
+*.xml
+*.avi
