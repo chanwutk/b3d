@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <div id="vis"></div>
+  <script type="text/javascript">
+    var spec = {
+      $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+      data: {
+        url: '../logs/test_sharedmemory_latency.log'
+      },
+      "facet": { "row": { "field": "expr" } },
+      "spec": {
+        "mark": { "type": "bar", "tooltip": { "content": "data" } },
+        "transform": [
+          // { "filter": "datum.num_processes === 3" },
+          // { "calculate": "datum.op + ' - ' + datum.action", "as": "op2" },
+          // { "filter": "datum.start_time < 1000" }
+          {"calculate": "datum.start / 1000000", "as": "start"},
+          {"calculate": "datum.end / 1000000", "as": "end"},
+          {"calculate": "datum.time / 1000000", "as": "time"}
+        ],
+        "encoding": {
+          "y": { "field": "action", "type": "ordinal" },
+          "x": { "field": "start", "type": "quantitative" },
+          "x2": { "field": "end" },
+          "color": { "field": "action" }
+        },
+        "width": 8000
+      }
+    };
+    vegaEmbed('#vis', spec);
+    // });
+  </script>
+</body>
+
+</html>
