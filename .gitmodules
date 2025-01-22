@@ -1,9 +1,6 @@
 [submodule "TrackEval"]
 	path = TrackEval
 	url = git@github.com:chanwutk/TrackEval.git
-[submodule "DalsooBinPacking"]
-	path = DalsooBinPacking
-	url = git@github.com:chanwutk/Dalsoo-Bin-Packing.git
 [submodule "boxmot"]
 	path = boxmot
 	url = git@github.com:chanwutk/boxmot.git
