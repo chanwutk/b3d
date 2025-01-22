@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<annotations>
-  <image id="0" name="frame.jpg" width="3840" height="2160">
-    <polygon label="domain" source="manual" occluded="0" points="4.33,1022.92;4.33,1224.91;1688.67,1211.87;2284.87,1267.26;3413.74,1257.49;3592.92,1259.11;3700.44,1286.81;3786.77,1343.82;3838.90,1412.24;3835.64,954.50;3594.55,933.32;1636.54,951.24;1167.40,1011.51" z_order="0">
-    </polygon>
-  </image>
-</annotations>

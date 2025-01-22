@@ -12,6 +12,7 @@ import numpy as np
 import numpy.typing as npt
 import torch
 import torch.nn.functional as F
+import cv2
 
 from detectron2.config import get_cfg
 from detectron2 import model_zoo
@@ -19,15 +20,32 @@ from detectron2.engine import DefaultPredictor
 from utils import mask_frame, parse_outputs, regionize_image
 
 
+cap = cv2.VideoCapture('jnc00.mp4')
+frame: "None | npt.NDArray" = None
+for i in range(20):
+    ret, _frame = cap.read()
+    if not ret:
+        break
+    frame = _frame
+
+cap.release()
+
+assert frame is not None
+
+
 def image4k(shm):
     img = np.ndarray((2160, 3840, 3), dtype=np.uint8, buffer=shm.buf)
-    img[990:1000, 990:1000, :] = 0
+    assert frame is not None
+    # img[:] = frame
+    # img[990:1000, 990:1000, :] = 0
     return img
 
 
 def image4k2():
     img = np.ndarray((2160, 3840, 3), dtype=np.uint8)
-    img[990:1000, 990:1000, :] = 0
+    assert frame is not None
+    # img[:] = frame
+    # img[990:1000, 990:1000, :] = 0
     return img
 
 
