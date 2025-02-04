@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import os
 import numpy as np
+import numpy.typing as npt
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
@@ -207,7 +208,7 @@ class Sort(object):
     self.trackers = []
     self.frame_count = 0
 
-  def update(self, dets=np.empty((0, 5))):
+  def update(self, dets: "npt.NDArray" = np.empty((0, 5))):
     """
     Params:
       dets - a numpy array of detections in the format [[x1,y1,x2,y2,score],[x1,y1,x2,y2,score],...]
