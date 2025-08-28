@@ -20,11 +20,6 @@ from __future__ import print_function
 import os
 import numpy as np
 import numpy.typing as npt
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-from skimage import io
 
 import glob
 import time
@@ -270,6 +265,12 @@ def parse_args():
     return args
 
 if __name__ == '__main__':
+  import matplotlib
+  matplotlib.use('TkAgg')
+  import matplotlib.pyplot as plt
+  import matplotlib.patches as patches
+  from skimage import io
+
   # all train
   args = parse_args()
   display = args.display
